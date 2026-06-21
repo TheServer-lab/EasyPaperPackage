@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>EPP — License</title>
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root{
+  --ink:       #211c14;
+  --paper:     #faf6ec;
+  --paper-mid: #f0e9d6;
+  --paper-dim: #e6dcc6;
+  --amber:     #c98a3e;
+  --amber-dim: #a06b28;
+  --rule:      #b9af98;
+  --chrome:    #1b1b1a;
+  --chrome-2:  #222220;
+  --chrome-3:  #2c2b27;
+  --chrome-bd: #33322c;
+  --chrome-fg: #e7e2d3;
+  --chrome-dim:#a39d8c;
+
+  --serif: 'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+  --mono:  ui-monospace,'SF Mono','Cascadia Code','JetBrains Mono',Menlo,Consolas,monospace;
+}
+*{ box-sizing:border-box; margin:0; padding:0; }
+
+html,body{ height:100%; background:var(--chrome); color:var(--chrome-fg); font-family:var(--mono); }
+
+/* ============================================================
+   SITE SHELL — top navigation
+   ============================================================ */
+#site-nav{
+  position:sticky; top:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 20px; height:48px;
+  background:var(--chrome); border-bottom:1px solid var(--chrome-bd);
+}
+.site-logo{
+  display:flex; align-items:baseline; gap:10px;
+  font-family:var(--serif); font-style:italic; font-size:18px;
+  color:var(--chrome-fg); text-decoration:none; letter-spacing:.01em;
+}
+.site-logo .ver{
+  font-family:var(--mono); font-style:normal; font-size:10px;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--amber); border:1px solid var(--amber);
+  border-radius:3px; padding:1px 5px; margin-left:4px;
+}
+.site-tabs{ display:flex; gap:2px; }
+.site-tab{
+  text-decoration:none; display:inline-block;
+  background:transparent; border:none; cursor:pointer;
+  font-family:var(--mono); font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+  color:var(--chrome-dim); padding:14px 14px; border-bottom:2px solid transparent;
+  transition:color .15s, border-color .15s;
+}
+.site-tab:hover{ color:var(--chrome-fg); }
+.site-tab.active{ color:var(--amber); border-bottom-color:var(--amber); }
+
+/* ============================================================
+   LICENSE PAGE — printed-document look, paper on chrome
+   ============================================================ */
+#page-license{
+  min-height:calc(100vh - 48px);
+  padding:56px 24px 80px;
+  display:flex; justify-content:center;
+}
+.license-sheet{
+  width:min(680px, 100%);
+  background:var(--paper);
+  color:var(--ink);
+  border-radius:2px;
+  box-shadow:0 18px 40px rgba(0,0,0,.45);
+  padding:56px 60px 64px;
+  position:relative;
+  overflow:hidden;
+}
+.license-sheet::before{
+  content:'';
+  position:absolute; inset:0;
+  background:repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 27px,
+    rgba(185,175,152,.18) 28px
+  );
+  pointer-events:none;
+}
+.license-eyebrow{
+  font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--amber-dim); margin-bottom:18px; position:relative;
+}
+.license-title{
+  font-family:var(--serif); font-weight:400; font-size:clamp(28px,4vw,38px);
+  color:var(--ink); margin-bottom:6px; position:relative;
+}
+.license-sub{
+  font-family:var(--serif); font-style:italic; font-size:15px;
+  color:#5b564a; margin-bottom:36px; position:relative;
+}
+.license-body{ position:relative; }
+.license-body h2{
+  font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--amber-dim); margin:32px 0 12px; padding-bottom:6px;
+  border-bottom:1px solid var(--rule);
+}
+.license-body h2:first-child{ margin-top:0; }
+.license-body p{
+  font-size:14px; line-height:1.8; color:#3a3527; margin-bottom:14px;
+}
+.license-body p strong{ color:var(--ink); }
+.license-grant{
+  border-left:3px solid var(--amber); background:var(--paper-mid);
+  padding:14px 18px; margin:18px 0; border-radius:0 3px 3px 0;
+  font-size:14px; line-height:1.75; color:#3a3527;
+}
+.copyright-line{
+  font-family:var(--mono); font-size:12px; letter-spacing:.04em;
+  color:#5b564a; margin-top:40px; padding-top:18px;
+  border-top:1px solid var(--rule); position:relative;
+}
+
+@media(max-width:600px){
+  .license-sheet{ padding:40px 28px 48px; }
+}
+
+button:focus-visible, a:focus-visible{
+  outline:2px solid var(--amber); outline-offset:2px;
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     SITE NAV
+     ============================================================ -->
+<nav id="site-nav">
+  <a class="site-logo" href="index.html">
+    Easy Paper Package <span class="ver">v0.2</span>
+  </a>
+  <div class="site-tabs">
+    <a class="site-tab" href="index.html">Home</a>
+    <a class="site-tab" href="learning.html">Learn</a>
+    <a class="site-tab" href="editor.html">Editor</a>
+    <a class="site-tab" href="download.html">Download</a>
+    <a class="site-tab active" href="license.html">License</a>
+  </div>
+</nav>
+
+<!-- ============================================================
+     LICENSE
+     ============================================================ -->
+<div id="page-license">
+  <div class="license-sheet">
+    <div class="license-eyebrow">Legal</div>
+    <h1 class="license-title">License</h1>
+    <p class="license-sub">Easy Paper Package — format, editor, and documentation.</p>
+
+    <div class="license-body">
+      <h2>Copyright</h2>
+      <p>Copyright © 2026 <strong>Sourasish Das</strong>. All rights reserved.</p>
+
+      <h2>Proprietary License</h2>
+      <p>This software, including its source code, design, and documentation (the "Software"), is the proprietary property of Sourasish Das and is protected by copyright law. The Software is not open source, and no rights are granted to copy, modify, sublicense, or redistribute it except as explicitly stated below.</p>
+
+      <div class="license-grant">
+        <strong>Permission is granted, free of charge, to any person obtaining access to the Software to use it</strong> for any purpose — personal, educational, or commercial — without payment of any fee or royalty.
+      </div>
+
+      <p>This permission covers use of the Software as provided. It does not grant the right to redistribute, sublicense, sell, or publish modified or unmodified copies of the Software, or to remove or alter this notice, unless separate written permission is obtained from the copyright holder.</p>
+
+      <h2>No Warranty</h2>
+      <p>The Software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and noninfringement. In no event shall the author be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the Software or the use or other dealings in the Software.</p>
+
+      <div class="copyright-line">© 2026 Sourasish Das · All rights reserved · Free to use</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
