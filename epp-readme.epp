@@ -1,0 +1,52 @@
+%epp=0.2%
+@title "Easy Paper Package (EPP)"
+@header "EPP — README"
+@footer "Page [page]"
+@page 1
+@heading "Easy Paper Package (EPP)" {align=center,bold}
+@quote "A plain UTF-8 document format for printable documents — no binaries, no internet, no complexity."
+@text "EPP is a lightweight, line-oriented document format designed for the simple case: a document that fits on A4 paper, with headings, paragraphs, lists, and the occasional table. It sits between a plain .txt file and a full PDF — structured enough to print cleanly, simple enough to last forever."
+@space
+@heading "Example" {bold}
+@code "%epp=0.2%[newline]; Header & footer on every page[newline]@header \"My Report\"[newline]@footer \"Page [page]\"[newline]@page 1[newline]@heading \"Quarterly Summary\" {bold,align=center}[newline]@space[newline]@quote \"Simple formats survive longer.\"[newline]@line[newline]@bullet \"Revenue up 12%\" {type=check}[newline]@bullet \"Costs reduced\" {type=check}[newline]@bullet \"New hires\" {type=arrow}"
+@space
+@heading "Why EPP?" {bold}
+@bullet "Pure UTF-8 — every .epp file is plain text. Open it in Notepad and it reads fine."
+@bullet "No binaries — zero embedded data. Images, fonts, and rendering are the viewer's job, not the file's."
+@bullet "Offline — the viewer makes no network requests. Documents never leave your machine unless you choose."
+@bullet "A4 ready — every page maps to A4 paper. Hit print and it comes out right."
+@bullet "Easy to parse — a working parser fits in under 100 lines of JavaScript."
+@bullet "Human readable — future-proof by design. In 30 years you can still open an .epp file and read it."
+@newpage
+@page 2
+@heading "This repository" {bold}
+@text "This repo contains the EPP website: the landing page, documentation, and a browser-based editor for writing and exporting .epp files."
+@table "File|Description"
+@row "index.html|Landing page — overview, features, and a live example"
+@row "learning.html|Full documentation — syntax, commands, attributes, escapes"
+@row "editor.html|In-browser editor — write, preview, import, and export .epp files"
+@row "download.html|Links out to this repository's Releases"
+@row "license.html|License terms"
+@text "Each page is a self-contained HTML file with no build step and no external dependencies — clone the repo and open index.html directly, or serve the folder with any static file server."
+@space
+@heading "Getting started" {bold}
+@code "git clone https://github.com/TheServer-lab/EasyPaperPackage.git[newline]cd EasyPaperPackage[newline]open index.html   # or just double-click it"
+@text "To try the format immediately, open editor.html, write a few @heading / @text / @bullet blocks, and use Export to download a .epp file, or Source to see the generated text."
+@newpage
+@page 3
+@heading "Format overview" {bold}
+@text "An EPP file is a sequence of commands, one per line:"
+@code "@command \"text\" {attributes}"
+@bullet "@ prefixes a command (@heading, @text, @bullet, @table, …)"
+@bullet "Text arguments are wrapped in double quotes"
+@bullet "Attributes are an optional comma-separated list in { } — flags like bold, or key-value pairs like align=center"
+@bullet "A semicolon (;) starts a comment, ignored to end of line"
+@bullet "Pages are separated with @newpage; @header / @footer repeat on every page"
+@text "See learning.html for the complete command reference, attribute table, escape sequences, and a full worked example."
+@space
+@heading "Releases" {bold}
+@text "Pre-built releases, source archives, and changelogs are published under Releases."
+@space
+@heading "License" {bold}
+@text "Copyright © 2026 Sourasish Das. All rights reserved."
+@text "This software is proprietary, but free to use by anyone for any purpose. Redistribution, modification, and resale require permission. See license.html or LICENSE for the full terms."
