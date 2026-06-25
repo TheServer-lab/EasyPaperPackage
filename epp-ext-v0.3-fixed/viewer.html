@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>EPP Viewer</title>
+<link rel="stylesheet" href="epp-style.css" />
+<style>
+  /* Loading / error states */
+  #epp-status {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+    min-height: calc(100vh - 48px);
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 13px;
+    color: #a39d8c;
+    text-align: center;
+    padding: 40px;
+  }
+  #epp-status.visible { display: flex; }
+  #epp-status .status-icon { font-size: 36px; }
+  #epp-status .status-url {
+    font-size: 11px; color: #5b5950; max-width: 480px;
+    word-break: break-all; line-height: 1.5;
+  }
+  #epp-status .status-retry {
+    background: transparent; border: 1px solid #4a4940; color: #e7e2d3;
+    font-family: inherit; font-size: 11px; letter-spacing: .06em;
+    text-transform: uppercase; padding: 7px 14px; border-radius: 3px;
+    cursor: pointer; margin-top: 8px;
+  }
+  #epp-status .status-retry:hover { border-color: #c98a3e; color: #c98a3e; }
+</style>
+</head>
+<body>
+<div id="epp-root"></div>
+<div id="epp-status">
+  <div class="status-icon">⏳</div>
+  <div id="status-msg">Loading…</div>
+  <div class="status-url" id="status-url"></div>
+  <button class="status-retry" id="status-retry" style="display:none">Retry</button>
+</div>
+<script src="epp-core.js"></script>
+<script src="viewer.js"></script>
+</body>
+</html>
