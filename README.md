@@ -1,80 +1,276 @@
-# Easy Paper Package (EPP)
+# EPP — Easy Paper Package
 
-> A plain UTF-8 document format for printable documents — no binaries, no internet, no complexity.
+> *"Simple formats survive longer than complicated ones."*
 
-EPP is a lightweight, line-oriented document format designed for the simple case: a document that fits on A4 paper, with headings, paragraphs, lists, and the occasional table. It sits between a plain `.txt` file and a full PDF — structured enough to print cleanly, simple enough to last forever.
+**EPP** is a lightweight, UTF-8 text document format for simple multi-page documents designed to be printed on A4 paper. It is human-readable, trivial to parse, and built to last.
 
-```
-%epp=0.2%
-; Header & footer on every page
-@header "My Report"
+```epp
+%epp=0.3%
+@header "Project Report"
 @footer "Page [page]"
 
 @page 1
-@heading "Quarterly Summary" {bold,align=center}
-@space
-@quote "Simple formats survive longer."
-@line
-@bullet "Revenue up 12%" {type=check}
-@bullet "Costs reduced" {type=check}
-@bullet "New hires" {type=arrow}
+@heading "Introduction" {bold, align=center}
+@text "This document demonstrates EPP v0.3."
+@callout "Sprint 12 is now complete." {color=green}
+@bullet "Research phase" {type=check}
+@bullet "Design review"  {type=check}
+@bullet "Implementation" {type=arrow}
 ```
 
-## Why EPP?
+---
 
-- **Pure UTF-8** — every `.epp` file is plain text. Open it in Notepad and it reads fine.
-- **No binaries** — zero embedded data. Images, fonts, and rendering are the viewer's job, not the file's.
-- **Offline** — the viewer makes no network requests. Documents never leave your machine unless you choose.
-- **A4 ready** — every page maps to A4 paper. Hit print and it comes out right.
-- **Easy to parse** — a working parser fits in under 100 lines of JavaScript.
-- **Human readable** — future-proof by design. In 30 years you can still open an `.epp` file and read it.
+## What is EPP?
 
-## This repository
+EPP (Easy Paper Package) is a plain-text document format with a `.epp` file extension. It uses a simple line-oriented command syntax — every command starts with `@`, takes a quoted string, and accepts an optional attribute block.
 
-This repo contains the EPP website: the landing page, documentation, and a browser-based editor for writing and exporting `.epp` files.
+It is **not** a replacement for Markdown, HTML, DOCX, or PDF. It fills a narrower need: documents that a human can read as plain text, a simple parser can render, a printer can output on A4, and time cannot corrupt.
 
-| File | Description |
+---
+
+## Key properties
+
+| Property | Detail |
 |---|---|
-| `index.html` | Landing page — overview, features, and a live example |
-| `learning.html` | Full documentation — syntax, commands, attributes, escapes |
-| `editor.html` | In-browser editor — write, preview, import, and export `.epp` files |
-| `download.html` | Links out to this repository's [Releases](https://github.com/TheServer-lab/EasyPaperPackage/releases) |
-| `license.html` | License terms |
+| **Encoding** | Pure UTF-8 text, always |
+| **Binary content** | None — no images, fonts, or embedded data |
+| **Dependencies** | Zero — fully offline, no network calls |
+| **Print target** | A4 paper |
+| **Extension** | `.epp` |
+| **Current version** | v0.3 (frozen) |
 
-Each page is a self-contained HTML file with no build step and no external dependencies — clone the repo and open `index.html` directly, or serve the folder with any static file server.
+---
 
-## Getting started
+## Syntax
 
-```bash
-git clone https://github.com/TheServer-lab/EasyPaperPackage.git
-cd EasyPaperPackage
-open index.html   # or just double-click it
+Every EPP command follows one of these patterns:
+
+```epp
+@command "text"
+@command "text" {attribute, key=value}
+@command bare_word
+@command
 ```
 
-To try the format immediately, open `editor.html`, write a few `@heading` / `@text` / `@bullet` blocks, and use **Export** to download a `.epp` file, or **Source** to see the generated text.
+A semicolon starts a comment. The version header is optional but recommended:
 
-## Format overview
+```epp
+%epp=0.3%
+; Everything after a semicolon is ignored
 
-An EPP file is a sequence of commands, one per line:
-
+@meta title="My Document"
+@meta author="SD"
 ```
-@command "text" {attributes}
+
+---
+
+## Command reference
+
+### Document structure
+
+| Command | Description |
+|---|---|
+| `@page N` | Start page number N |
+| `@page N {lined}` | Lined (notebook-ruled) page |
+| `@page N {color=cream}` | Coloured page background |
+| `@page N {rotate=90}` | Rotate content 90° clockwise |
+| `@newpage` | End current page, start next |
+| `@title "..."` | Document title |
+| `@meta key="value"` | Metadata key-value pair |
+| `@header "..."` | Header band on every page |
+| `@footer "Page [page]"` | Footer — `[page]` becomes the page number |
+| `@label name` | Navigation bookmark (invisible in print) |
+
+### Content blocks
+
+| Command | Description |
+|---|---|
+| `@heading "..."` | Section heading |
+| `@text "..."` | Body paragraph |
+| `@bullet "..."` | List item |
+| `@code "..."` | Monospace code block — use `[newline]` for line breaks |
+| `@quote "..."` | Block quote |
+| `@callout "..." {color=yellow}` | Coloured notice box |
+| `@table "Col1\|Col2\|Col3"` | Table with pipe-separated headers |
+| `@row "A\|B\|C"` | Table data row |
+| `@line` | Horizontal rule |
+| `@space` | Vertical gap |
+
+### Text and heading attributes
+
+| Attribute | Values |
+|---|---|
+| `bold` | flag |
+| `italic` | flag |
+| `underline` | flag |
+| `align=` | `left` `center` `right` |
+| `color=` | `black` `red` `blue` `green` `gray` `amber` `purple` `white` |
+| `highlight=` | `yellow` `green` `blue` `pink` `red` `orange` |
+
+### Bullet types
+
+| `type=` value | Glyph |
+|---|---|
+| `disc` | • (default) |
+| `number` | 1. 2. 3. … |
+| `check` | ✓ |
+| `arrow` | → |
+| `star` | ★ |
+
+### Callout colours
+
+| `color=` | Auto label | Suggested use |
+|---|---|---|
+| `yellow` | Note | General reminders |
+| `green` | Success | Completed steps |
+| `blue` | Info | Reference, informational |
+| `red` | Danger | Destructive or critical actions |
+| `gray` | Note | Neutral side notes |
+| `purple` | Note | Tips and hints |
+
+---
+
+## Complete example
+
+```epp
+%epp=0.3%
+; Full v0.3 example
+
+@meta title="Project Report"
+@meta author="SD"
+
+@header "Project Report"
+@footer "Page [page]"
+
+@page 1
+@heading "Introduction" {bold, align=center}
+@text "This document demonstrates all EPP v0.3 features."
+@quote "Simple formats survive longer than complicated ones."
+@callout "Sprint 12 is now complete."           {color=green}
+@callout "Backup before running the migration." {color=yellow}
+@bullet "Research phase"   {type=check}
+@bullet "Design review"    {type=check}
+@bullet "Implementation"   {type=arrow}
+
+@newpage
+
+@page 2 {color=blue}
+@heading "Highlighted Notes" {bold}
+@text "All targets were met ahead of schedule." {highlight=green}
+@text "The API key section needs review."       {highlight=yellow}
+@table "Name|Role|Status"
+@row   "Alice|Lead|Active"
+@row   "Bob|Design|Active"
+@code  "$ make build[newline]$ make test[newline]All tests passed."
+
+@newpage
+
+@page 3 {lined}
+@heading "Meeting Notes" {bold}
+@text "Discussed roadmap for v0.4."
+@text "Action items assigned to Alice and Bob."
+@label notes_end
+
+@newpage
+
+@page 4 {rotate=90}
+@heading "Wide Table (rotated)" {bold}
+@table "Command|Added|Purpose"
+@row "@callout|v0.3|Coloured notice box"
+@row "@highlight|v0.3|Background tint on text"
+@row "@page lined|v0.3|Notebook ruling"
+@row "@page color|v0.3|Paper background tint"
 ```
 
-- `@` prefixes a command (`@heading`, `@text`, `@bullet`, `@table`, …)
-- Text arguments are wrapped in double quotes
-- Attributes are an optional comma-separated list in `{ }` — flags like `bold`, or key-value pairs like `align=center`
-- A semicolon (`;`) starts a comment, ignored to end of line
-- Pages are separated with `@newpage`; `@header` / `@footer` repeat on every page
+---
 
-See [`learning.html`](./learning.html) for the complete command reference, attribute table, escape sequences, and a full worked example.
+## Version history
 
-## Releases
+All versions are frozen. Each is a strict superset of the last — a v0.1 file is valid v0.3, and a v0.1 parser reading a v0.3 file will gracefully ignore what it doesn't know.
 
-Pre-built releases, source archives, and changelogs are published under [Releases](https://github.com/TheServer-lab/EasyPaperPackage/releases).
+| Version | Status | What was added |
+|---|---|---|
+| **v0.3** | Frozen — current | `@callout`, `highlight=`, `@page {lined}`, `@page {color=}`, `@page {rotate=}` |
+| **v0.2** | Frozen | `@meta`, `@header`, `@footer`, `@quote`, `@line`, `@table`, `@row`, `italic`, `underline`, bullet `type=`, `[page]` token |
+| **v0.1** | Frozen — foundation | Core format: pages, text, headings, bullets, code, labels, basic attributes |
 
-## License
+---
 
-Copyright © 2026 Sourasish Das. All rights reserved.
+## Design goals
 
-This software is proprietary, but free to use by anyone for any purpose. Redistribution, modification, and resale require permission. See [`license.html`](./license.html) or `LICENSE` for the full terms.
+EPP is intended for:
+
+- Simple documents and reports
+- Multi-page text layout
+- Long-term archival and preservation
+- Human-readable source files
+- Small, straightforward parsers
+
+EPP is intentionally **not** designed for: images, embedded assets, scripting, rich inline formatting, or complex layouts. Use the right tool for those jobs.
+
+---
+
+## Writing a parser
+
+A working EPP parser can be written in under 200 lines of most languages. The format is line-oriented: read line by line, strip comments (everything from `;` to end-of-line), match the `@command` prefix, extract the quoted string argument, and parse the optional `{attr, key=value}` block.
+
+Unknown commands and unknown attributes should be silently ignored. This is what allows older parsers to read newer files without breaking.
+
+---
+
+## Why EPP is not open source
+
+EPP is free to use and the specification is fully public. Anyone can write a parser, renderer, or tooling.
+
+The project is not open source for one honest reason: **it costs money to run.** The website at [easypaperpackage.xyz](https://easypaperpackage.xyz) is actively maintained — domain, hosting, and upkeep come out of one person's pocket. Opening the repository would also mean managing issues, pull requests, and community expectations without the resources to do that sustainably. The current model — a published, frozen spec with a single maintainer — keeps EPP stable and the spec honest.
+
+If EPP grows to attract contributors or funding, that changes. Until then, the format is yours to use freely.
+
+---
+
+## Escape sequences
+
+Inside quoted strings:
+
+| Sequence | Produces |
+|---|---|
+| `\"` | Literal double-quote |
+| `\\` | Literal backslash |
+| `\[` | Literal `[` |
+| `\]` | Literal `]` |
+| `[newline]` | Line break inside rendered text |
+
+The `[page]` token is only recognised inside `@footer` text. Everywhere else it is treated as literal text.
+
+---
+
+## Rendering intent
+
+A renderer may display EPP documents as a page preview, terminal viewer, printed A4 output, or exported PDF/HTML. The format makes no assumptions about the renderer. Renderers are encouraged to:
+
+- Treat colour and style attributes as hints, not hard requirements
+- Produce clean A4 output when printing
+- Preserve block reading order exactly as written
+- Handle unknown commands and attributes by ignoring them
+
+---
+
+## Tools
+
+Official EPP tools are available at [easypaperpackage.xyz](https://easypaperpackage.xyz).
+
+| Tool | Platform | Description |
+|---|---|---|
+| **EPP Ultimate Edition** | All-in-one | Every official tool in a single download |
+| **Android App** | Android 8.0+ | Native viewer — open .epp files from any app, file manager, or email attachment |
+| **Chromium Extension** | Chrome, Edge, Brave | Renders .epp files inline in the browser, local and remote URLs, print support |
+| **Python Renderer** | Cross-platform | Zero-dependency single-file script, converts .epp to self-contained HTML. Pure stdlib, Python 3.7+ |
+| **VS Code Extension** | VS Code 1.80+ | Syntax highlighting for all v0.3 commands, live side-by-side preview panel, snippets |
+| **Claude Skill** | Claude / Anthropic | Teaches Claude the full EPP v0.3 spec so it can author and review .epp files natively |
+
+---
+
+## Links
+
+- **Website:** [easypaperpackage.xyz](https://easypaperpackage.xyz)
+- **Specification:** [easypaperpackage.xyz](https://easypaperpackage.xyz)
