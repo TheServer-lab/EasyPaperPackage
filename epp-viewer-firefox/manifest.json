@@ -1,0 +1,56 @@
+{
+  "manifest_version": 2,
+  "name": "EPP Viewer",
+  "version": "1.4.0",
+  "description": "View and print .epp (Easy Paper Package) documents — works with local files and URLs on the internet.",
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "epp-viewer@theserverlab",
+      "strict_min_version": "109.0",
+      "data_collection_permissions": {
+        "required": ["none"],
+        "optional": []
+      }
+    }
+  },
+
+  "icons": {
+    "16":  "icons/icon16.png",
+    "48":  "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+
+  "browser_action": {
+    "default_title": "Open EPP Viewer"
+  },
+
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+
+  "permissions": [
+    "webNavigation",
+    "tabs",
+    "http://*/*",
+    "https://*/*",
+    "file:///*"
+  ],
+
+  "content_scripts": [
+    {
+      "matches": ["file:///*"],
+      "js": ["epp-core.js", "content.js"],
+      "css": ["epp-style.css"],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "web_accessible_resources": [
+    "viewer.html",
+    "epp-core.js",
+    "epp-style.css",
+    "viewer.js"
+  ]
+}
