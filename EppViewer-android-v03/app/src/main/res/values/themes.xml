@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.EppViewer" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/amber</item>
+        <item name="colorPrimaryVariant">@color/amber_dim</item>
+        <item name="colorOnPrimary">@color/ink</item>
+        <item name="colorSecondary">@color/chrome_fg</item>
+        <item name="colorOnSecondary">@color/ink</item>
+        <item name="colorSurface">@color/chrome_bg</item>
+        <item name="colorOnSurface">@color/chrome_fg</item>
+        <item name="android:colorBackground">@color/chrome_bg</item>
+        <item name="android:statusBarColor">@color/chrome_bg</item>
+        <item name="android:navigationBarColor">@color/chrome_bg</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+    </style>
+
+    <!-- Popup menus (overflow menu) keep a dark chrome look -->
+    <style name="Theme.EppViewer.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Dark">
+        <item name="android:colorBackground">@color/chrome_2</item>
+        <item name="android:textColor">@color/chrome_fg</item>
+    </style>
+
+</resources>

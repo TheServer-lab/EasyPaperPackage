@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">EPP Viewer</string>
+    <string name="open_with_epp">Open with EPP Viewer</string>
+    <string name="action_open">Open file</string>
+    <string name="action_share">Share</string>
+    <string name="action_about">About</string>
+</resources>

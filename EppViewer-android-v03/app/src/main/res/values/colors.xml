@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="chrome_bg">#FF1B1B1A</color>
+    <color name="chrome_2">#FF222220</color>
+    <color name="chrome_3">#FF2C2B27</color>
+    <color name="chrome_bd">#FF33322C</color>
+    <color name="chrome_fg">#FFE7E2D3</color>
+    <color name="chrome_dim">#FFA39D8C</color>
+    <color name="amber">#FFC98A3E</color>
+    <color name="amber_dim">#FFA06B28</color>
+    <color name="paper">#FFFAF6EC</color>
+    <color name="ink">#FF211C14</color>
+</resources>
