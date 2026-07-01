@@ -1,0 +1,380 @@
+:root{
+  --paper-bg:#faf6ec;
+  --paper-ink:#211c14;
+  --accent:#c98a3e;
+  --rule:#b9af98;
+  --chrome-bg:#1b1b1a;
+  --chrome-fg:#e7e2d3;
+  --serif:'Iowan Old Style','Palatino Linotype', Palatino, Georgia, serif;
+  --mono: ui-monospace, 'SF Mono', 'Cascadia Code', 'JetBrains Mono', Menlo, Consolas, monospace;
+}
+html, body{
+  margin:0;
+  background:#141413;
+  font-family:var(--mono);
+  color:var(--chrome-fg);
+}
+button:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+
+.epp-toolbar{
+  position:sticky;
+  top:0;
+  z-index:10;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:10px 16px;
+  background:var(--chrome-bg);
+  border-bottom:1px solid #33322c;
+}
+.epp-brand{
+  font-size:12px;
+  letter-spacing:.06em;
+  font-family:var(--serif);
+  font-style:italic;
+  color:var(--chrome-fg);
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.epp-src-url{
+  font-size:10px;
+  letter-spacing:.04em;
+  color:var(--chrome-dim);
+  text-decoration:none;
+  border:1px solid #3a3930;
+  border-radius:3px;
+  padding:3px 8px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  max-width:240px;
+  flex:0 1 auto;
+}
+.epp-src-url:hover{ color:var(--accent); border-color:var(--accent); }
+.epp-nav{ display:flex; align-items:center; gap:10px; flex:0 0 auto; }
+.epp-indicator{ font-size:11px; color:#a39d8c; min-width:50px; text-align:center; }
+.epp-actions{ display:flex; gap:8px; align-items:center; flex:0 0 auto; }
+.epp-btn{
+  background:transparent;
+  border:1px solid #4a4940;
+  color:var(--chrome-fg);
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  padding:6px 10px;
+  border-radius:3px;
+  cursor:pointer;
+}
+.epp-btn:hover{ border-color:var(--accent); color:var(--accent); }
+.epp-btn.primary{ background:var(--accent); border-color:var(--accent); color:#1b1b1a; }
+.epp-btn.primary:hover{ color:#1b1b1a; }
+
+.epp-pages{ display:flex; flex-direction:column; align-items:center; gap:24px; padding:28px 16px 48px; }
+.epp-page{
+  position:relative;
+  width:min(210mm, 92vw);
+  min-height:calc(min(210mm, 92vw) * 1.4142);
+  background:var(--paper-bg);
+  color:var(--paper-ink);
+  box-shadow:0 18px 40px rgba(0,0,0,.45);
+  font-family:var(--serif);
+  font-size:15px;
+  line-height:1.6;
+  display:flex;
+  flex-direction:column;
+}
+.epp-header-band{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.06em;
+  text-align:center;
+  color:var(--rule);
+  border-bottom:1px solid var(--rule);
+  padding:8px 40px;
+  flex:0 0 auto;
+}
+.epp-page-body{
+  flex:1 1 auto;
+  padding:36px 40px 24px;
+  position:relative;
+}
+.epp-footer-band{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.06em;
+  text-align:center;
+  color:var(--rule);
+  border-top:1px solid var(--rule);
+  padding:8px 40px;
+  flex:0 0 auto;
+}
+/* fallback footer when no @footer is set */
+.epp-page-footer{
+  text-align:center;
+  font-size:11px;
+  color:#8a8270;
+  font-family:var(--mono);
+  padding:6px 0 10px;
+  flex:0 0 auto;
+}
+
+/* page-inner wraps everything for legacy compat */
+.epp-page-inner{ display:contents; }
+
+.epp-heading{ font-size:22px; font-weight:600; margin:0 0 14px; }
+.epp-text{ margin:0 0 12px; }
+.epp-space{ height:18px; }
+
+/* bullets */
+.epp-bullets{
+  list-style:none;
+  margin:0 0 12px;
+  padding-left:0;
+}
+.epp-bullets li{
+  display:flex;
+  align-items:baseline;
+  gap:8px;
+  margin-bottom:4px;
+}
+.epp-bullet-glyph{
+  flex:0 0 1.4em;
+  text-align:right;
+  color:var(--accent);
+  font-family:var(--mono);
+  font-size:.9em;
+}
+
+/* code */
+.epp-code{
+  font-family:var(--mono);
+  font-size:13px;
+  background:#efe9da;
+  border-left:3px solid var(--accent);
+  padding:10px 12px;
+  margin:0 0 12px;
+  white-space:pre-wrap;
+}
+
+/* quote */
+.epp-quote{
+  margin:0 0 14px;
+  padding:8px 16px;
+  border-left:3px solid var(--accent);
+  font-style:italic;
+  color:#5b564a;
+}
+
+/* line */
+.epp-line{
+  border:none;
+  border-top:1px solid var(--rule);
+  margin:10px 0 16px;
+}
+
+/* table */
+.epp-table{
+  width:100%;
+  border-collapse:collapse;
+  margin:0 0 14px;
+  font-size:14px;
+}
+.epp-table th, .epp-table td{
+  border:1px solid var(--rule);
+  padding:5px 10px;
+  text-align:left;
+}
+.epp-table thead tr{
+  background:#ede7d6;
+  font-weight:700;
+}
+.epp-table tbody tr:nth-child(even){ background:#f4f0e6; }
+
+.empty-hint{ font-style:italic; color:#8a8270; }
+.label-tab{
+  position:absolute;
+  right:-15px;
+  transform:translateY(-50%) rotate(90deg);
+  transform-origin:left center;
+  background:var(--accent);
+  color:#1b1b1a;
+  font-family:var(--mono);
+  font-size:9px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  padding:2px 7px;
+  border-radius:2px;
+  white-space:nowrap;
+  box-shadow:0 2px 4px rgba(0,0,0,.3);
+}
+
+@media print{
+  /* Force every background colour/image to actually print instead of
+     being stripped by the browser's ink-saving default. Without this,
+     callouts, highlights, coloured pages, lined-page rules, and table
+     zebra-striping all render as plain white. */
+  *{
+    print-color-adjust:exact;
+    -webkit-print-color-adjust:exact;
+    color-adjust:exact;
+  }
+
+  /* Reset html/body so the browser adds no extra margin/padding/scrollbar
+     space that would push the 210 mm page out of the printable area. */
+  html{
+    background:#fff;
+    /* Prevent the browser from scaling content to fit its own idea of
+       the printable area — we own the layout completely. */
+    width:210mm;
+    margin:0;
+    padding:0;
+  }
+  body{
+    background:#fff;
+    width:210mm;
+    margin:0;
+    padding:0;
+    /* Ensure no inherited font-size scaling shifts mm-based layout. */
+    font-size:15px;
+  }
+
+  .no-print{ display:none !important; }
+
+  /* The pages container must be zero-gap, zero-padding so that each
+     .epp-page div starts exactly at the top of a new sheet. */
+  .epp-pages{
+    display:block;
+    padding:0;
+    margin:0;
+    width:210mm;
+  }
+
+  .epp-page{
+    /* Flex containers are not reliably fragmented by browsers' print
+       pagination — break-after on a flex child is often ignored, which
+       lets content drift across the intended A4 boundary. Block layout
+       fragments correctly, so flex is dropped here in favour of it. */
+    display:block !important;
+    box-shadow:none;
+    /* Each page must occupy exactly one A4 sheet.
+       Since @page margin is 0, the printable area IS 210×297 mm. */
+    width:210mm;
+    height:297mm;
+    margin:0;
+    padding:0;
+    /* Clip anything that overflows rather than letting it spill onto
+       the next sheet and misalign page boundaries. */
+    overflow:hidden;
+    page-break-after:always;
+    break-after:page;
+    /* Establish a positioning context for absolute footer/header. */
+    position:relative;
+  }
+  .epp-page:last-child{ page-break-after:auto; break-after:auto; }
+
+  /* Reset the body padding that was added for screen display. */
+  .epp-page-body{
+    min-height:0;
+    /* Keep box-sizing consistent so padding doesn't add to the 210mm width. */
+    box-sizing:border-box;
+  }
+
+  .epp-header-band, .epp-footer-band, .epp-page-footer{ flex:none; }
+  .epp-footer-band, .epp-page-footer{
+    position:absolute;
+    left:0; right:0; bottom:0;
+  }
+  .label-tab{ display:none; }
+
+  /* Tell the browser the sheet is A4 with zero margins so our divs map
+     1-to-1 onto the physical paper area. */
+  @page{
+    size:210mm 297mm;
+    margin:0;
+  }
+}
+
+@media (max-width:520px){
+  .epp-brand{ display:none; }
+}
+
+/* ---- v0.3: callout boxes ---- */
+.epp-callout{
+  border-radius:0 3px 3px 0;
+  padding:9px 13px;
+  margin:0 0 12px;
+  font-size:14px;
+  line-height:1.55;
+}
+.epp-callout-label{
+  display:block;
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  font-weight:700;
+  margin-bottom:3px;
+}
+
+/* ---- v0.3: page rotation ---- */
+/* Paper stays portrait — only the text content inside rotates */
+.epp-page-rotate-90  .epp-page-body{
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  height:auto;
+  width:100%;
+}
+.epp-page-rotate-270 .epp-page-body{
+  writing-mode:vertical-lr;
+  height:auto;
+  width:100%;
+}
+.epp-page-rotate-180 .epp-page-body{
+  transform:rotate(180deg);
+}
+
+/* ---- v0.3: lined page (notebook rule) ---- */
+/* Applied inline via style= on the page div; the left margin line is added via ::before */
+.epp-page-lined::before{
+  content:'';
+  position:absolute;
+  top:0; bottom:0;
+  left:52px;
+  width:1px;
+  background:rgba(220,120,100,.35);
+  pointer-events:none;
+}
+.epp-page-lined .epp-page-body{
+  padding-left:64px;
+}
+
+/* ---- v0.4: watermark ---- */
+.epp-watermark{
+  position:absolute;
+  top:50%; left:50%;
+  translate:-50% -50%;
+  font-family:var(--serif);
+  font-weight:700;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  pointer-events:none;
+  user-select:none;
+  z-index:10;
+}
+
+/* ---- v0.4: @sign ---- */
+.epp-sign{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:14px;
+  color:#5b564a;
+  margin:8px 0 4px;
+  letter-spacing:.04em;
+}
+
+/* v0.4: @signandclose — renders in-page identically to a normal .epp-sign
+   block above (no separate wrap needed since it's part of page content now). */

@@ -1,0 +1,64 @@
+/* Webview-specific chrome. epp-style.css (loaded before this file) provides
+ * all of the actual "paper" rendering (.epp-page, .epp-heading, etc) — this
+ * file only styles the VS Code preview toolbar and error banner that wrap it. */
+
+html, body {
+  background: var(--vscode-editor-background);
+  color: var(--vscode-foreground);
+  height: 100%;
+}
+
+#epp-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 14px;
+  background: var(--chrome-bg);
+  border-bottom: 1px solid #33322c;
+}
+
+#epp-brand {
+  font-size: 12px;
+  letter-spacing: .06em;
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--chrome-fg);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#epp-nav { display: flex; align-items: center; gap: 10px; }
+#epp-indicator { font-size: 11px; color: #a39d8c; min-width: 50px; text-align: center; }
+
+.epp-nav-btn {
+  background: transparent;
+  border: 1px solid #4a4940;
+  color: var(--chrome-fg);
+  font-family: var(--mono);
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.epp-nav-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.epp-nav-btn:disabled { opacity: .35; cursor: default; }
+
+#epp-error-banner {
+  display: none;
+  margin: 12px 16px 0;
+  padding: 10px 14px;
+  background: #4a2a2a;
+  border: 1px solid #a23b2e;
+  color: #f4d9d4;
+  font-family: var(--mono);
+  font-size: 12px;
+  border-radius: 4px;
+}
+
+/* Slightly tighten page spacing inside the (often narrower) preview pane */
+#epp-pages { padding: 24px 12px 40px; }
